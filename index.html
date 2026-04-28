@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golf Handicap Calculator</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div class="hero-ball" aria-hidden="true"></div>
+      <p class="eyebrow">Golf tools</p>
+      <h1>Golf Handicap Calculator</h1>
+      <p class="intro">A cleaner way to estimate your handicap, one round at a time.</p>
+      <div class="chips">
+        <span class="chip">Step-by-step rounds</span>
+        <span class="chip">Fast estimate</span>
+        <span class="chip">More rounds = better accuracy</span>
+      </div>
+    </header>
+
+    <section id="setup-card" class="card">
+      <h2 class="section-title">Start your estimate</h2>
+      <label for="rounds">How many rounds do you want to enter?</label>
+      <div class="setup-row">
+        <input id="rounds" name="rounds" type="number" min="1" value="8" required>
+        <button id="start-btn" type="button">Start</button>
+      </div>
+      <div class="help">
+        <p><strong>Where do I find Course Rating and Slope Rating?</strong></p>
+        <p>Check your scorecard near the tees you played, or the course website/app for that tee color.</p>
+        <p><strong>Tip:</strong> The more rounds you enter, the more accurate your handicap estimate will be.</p>
+        <p>After you fill each round, click <strong>Next Round</strong> to continue.</p>
+      </div>
+    </section>
+
+    <section id="round-card" class="card hidden">
+      <div class="progress-bar-wrap" aria-hidden="true">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      <p id="progress" class="progress"></p>
+      <p id="step-note" class="step-note">Enter this round values, then click <strong>Next Round</strong>.</p>
+      <div class="fields">
+        <div>
+          <label for="score">Adjusted Gross Score</label>
+          <input id="score" type="number" min="40" max="160" step="1" required>
+        </div>
+        <div>
+          <label for="rating">Course Rating</label>
+          <input id="rating" type="number" min="55" max="85" step="0.1" required>
+        </div>
+        <div>
+          <label for="slope">Slope Rating</label>
+          <input id="slope" type="number" min="55" max="155" step="1" required>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="back-btn" type="button" class="secondary">Back</button>
+        <button id="next-btn" type="button">Next Round</button>
+      </div>
+    </section>
+
+    <section id="error" class="card error hidden" aria-live="polite"></section>
+
+    <section id="result" class="card hidden" aria-live="polite">
+      <h2>Your Handicap Index</h2>
+      <p id="handicap-value" class="handicap-value"></p>
+      <p id="used-count"></p>
+      <div id="details"></div>
+      <button id="restart-btn" type="button" class="secondary">Start Over</button>
+    </section>
+  </main>
+
+  <button id="survey-toggle" class="survey-toggle" type="button" aria-expanded="false" aria-controls="survey-panel">
+    Feedback
+  </button>
+  <aside id="survey-panel" class="survey-panel hidden" aria-live="polite">
+    <h3>Help us improve</h3>
+    <p class="survey-copy">Share quick feedback about this calculator.</p>
+    <form id="survey-form">
+      <label for="survey-rating">How would you rate this app?</label>
+      <select id="survey-rating" required>
+        <option value="">Choose one</option>
+        <option value="5">5 - Excellent</option>
+        <option value="4">4 - Good</option>
+        <option value="3">3 - Okay</option>
+        <option value="2">2 - Needs work</option>
+        <option value="1">1 - Poor</option>
+      </select>
+
+      <label for="survey-best">What do you like most?</label>
+      <input id="survey-best" type="text" maxlength="120" placeholder="Example: Step-by-step flow">
+
+      <label for="survey-improve">What should we improve?</label>
+      <textarea id="survey-improve" rows="3" maxlength="240" placeholder="Your suggestion"></textarea>
+
+      <div class="survey-actions">
+        <button id="survey-close" type="button" class="secondary">Close</button>
+        <button type="submit">Submit</button>
+      </div>
+      <p id="survey-status" class="survey-status hidden">Thanks! Your feedback was saved.</p>
+    </form>
+  </aside>
+
+  <script src="./script.js"></script>
+</body>
+</html>
